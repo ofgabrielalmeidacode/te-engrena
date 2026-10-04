@@ -1,6 +1,6 @@
 /* Te Engrena: guarda o app no celular para funcionar sem internet.
    Ao publicar uma versão nova do index.html, aumente o número abaixo. */
-const VERSAO = "te-engrena-v1";
+const VERSAO = "te-engrena-v2";
 const ARQUIVOS = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png", "./apple-touch-icon.png"];
 
 self.addEventListener("install", (e) => {
