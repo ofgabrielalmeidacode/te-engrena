@@ -1,6 +1,6 @@
 /* Te Engrena: guarda o app no celular para funcionar sem internet.
    Ao publicar uma versão nova do index.html, aumente o número abaixo. */
-const VERSAO = "te-engrena-v2";
+const VERSAO = "te-engrena-v6";
 const ARQUIVOS = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png", "./apple-touch-icon.png"];
 
 self.addEventListener("install", (e) => {
@@ -26,8 +26,6 @@ self.addEventListener("fetch", (e) => {
   const r = e.request;
   if (r.method !== "GET") return;
   const u = new URL(r.url);
-
-  // Página do app: tenta a versão mais nova (3 s); sem sinal, abre a guardada.
   if (r.mode === "navigate") {
     e.respondWith(
       comPrazo(fetch(r), 3000)
@@ -36,8 +34,6 @@ self.addEventListener("fetch", (e) => {
     );
     return;
   }
-
-  // Ícones, arquivos do app e fontes: usa o que estiver guardado, senão baixa e guarda.
   const fonte = u.hostname === "fonts.googleapis.com" || u.hostname === "fonts.gstatic.com";
   if (u.origin === self.location.origin || fonte) {
     e.respondWith(
